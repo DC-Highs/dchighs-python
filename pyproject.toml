@@ -47,7 +47,6 @@ Homepage = "https://github.com/DC-Highs/dchighs-python"
 Documentation = "https://github.com/DC-Highs/dchighs-python/tree/main/docs"
 Repository = "https://github.com/DC-Highs/dchighs-python"
 Issues = "https://github.com/DC-Highs/dchighs-python/issues"
-Changelog = "https://github.com/DC-Highs/dchighs-python/blob/main/CHANGELOG.md"
 
 [tool.poetry]
 include = [{ path = "docs", format = "sdist" }, { path = "tests", format = "sdist" }]

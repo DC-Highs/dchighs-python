@@ -20,7 +20,6 @@ the repository.
 
 ```sh
 poetry version patch          # or minor / major / 0.2.0
-# edit CHANGELOG.md
 poetry install --all-extras
 poetry run poe cov            # must stay at 100%
 git commit -am "chore: release $(poetry version -s)"
