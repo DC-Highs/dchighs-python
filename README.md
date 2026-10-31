@@ -118,5 +118,7 @@ state.assets.list_assets([AssetType.IMAGE])
 
 ```sh
 poetry install --all-extras
-poetry run pytest
+poetry run poe test        # run the tests
+poetry run poe cov         # tests + coverage (line and branch), fails below 100%
+poetry run poe cov-html    # same, with an HTML report in htmlcov/
 ```
