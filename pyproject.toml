@@ -57,10 +57,35 @@ packages = [
 [tool.poetry.group.dev.dependencies]
 pytest = ">=8.0"
 pytest-asyncio = ">=0.23"
+pytest-cov = ">=5.0"
+poethepoet = ">=0.29"
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+pythonpath = ["tests"]
 asyncio_mode = "auto"
+
+[tool.poe.tasks]
+test = "pytest"
+cov = "pytest --cov --cov-branch --cov-report=term-missing --cov-fail-under=100"
+cov-html = "pytest --cov --cov-branch --cov-report=html"
+
+[tool.coverage.run]
+source = [
+    "dc_core",
+    "dc_localization",
+    "dc_statistics",
+    "dc_assets",
+    "dc_config",
+    "dc_config_mapper",
+    "dc_client_state",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "raise NotImplementedError",
+]
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
