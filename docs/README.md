@@ -35,6 +35,10 @@ poetry install --all-extras
 poetry run pytest
 ```
 
+## Releasing
+
+See [publishing](publishing.md) for the PyPI release process.
+
 ## Conventions
 
 - Every import name keeps the `dc_` prefix of the original `@dchighs/dc-*` packages.

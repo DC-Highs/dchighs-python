@@ -28,7 +28,7 @@ poetry add "dchighs[localization,assets]"   # pick modules
 poetry add "dchighs[all]"                   # everything
 ```
 
-Extras: `localization`, `statistics`, `assets`, `config`, `config-mapper`, `client-state`, `all`.
+Published on PyPI as [`dchighs`](https://pypi.org/project/dchighs/). Extras: `localization`, `statistics`, `assets`, `config`, `config-mapper`, `client-state`, `all`.
 See [docs/](docs/README.md) for the documentation of each module.
 
 ## Usage
