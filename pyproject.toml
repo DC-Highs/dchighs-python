@@ -1,0 +1,67 @@
+[project]
+name = "dchighs"
+version = "0.1.0"
+description = "Python port of the DC Highs Dragon City libraries (fan-made, not affiliated with SocialPoint)."
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "Marcuth", email = "me@marcuth.dev" }]
+requires-python = ">=3.9,<4.0"
+keywords = ["dragon-city", "dchighs", "game", "socialpoint"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Typing :: Typed",
+]
+# `dc_core` is the only required module and has no third-party dependencies.
+# Every other module is opt-in through an extra (see docs/README.md).
+dependencies = []
+
+[project.optional-dependencies]
+localization = ["httpx (>=0.27,<1.0)"]
+statistics = []
+assets = ["httpx (>=0.27,<1.0)"]
+config = ["httpx (>=0.27,<1.0)", "pydantic (>=2.6,<3.0)"]
+config-mapper = [
+    "httpx (>=0.27,<1.0)",
+    "pydantic (>=2.6,<3.0)",
+    "pluralizer (>=1.2,<2.0)",
+]
+client-state = []
+all = [
+    "httpx (>=0.27,<1.0)",
+    "pydantic (>=2.6,<3.0)",
+    "pluralizer (>=1.2,<2.0)",
+]
+
+[project.urls]
+Repository = "https://github.com/DC-Highs/dchighs-python"
+
+[tool.poetry]
+packages = [
+    { include = "dc_core" },
+    { include = "dc_localization" },
+    { include = "dc_statistics" },
+    { include = "dc_assets" },
+    { include = "dc_config" },
+    { include = "dc_config_mapper" },
+    { include = "dc_client_state" },
+]
+
+[tool.poetry.group.dev.dependencies]
+pytest = ">=8.0"
+pytest-asyncio = ">=0.23"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
