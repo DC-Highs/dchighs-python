@@ -26,7 +26,7 @@ class AttackIn(Strict):
     skill_id: Optional[Num] = None
 
     def transform(self) -> JsonDict:
-        element = DragonElement.from_acronym(self.element)  # omitted when the acronym is unknown
+        element = DragonElement.from_acronym(self.element)
 
         attack: JsonDict = {"id": self.id, "name": self.name, "name_key": self.name_key}
 

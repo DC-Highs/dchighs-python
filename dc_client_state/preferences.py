@@ -32,8 +32,6 @@ class Preferences:
     def __init__(self, user_default: UserDefault) -> None:
         self.user_default = user_default
 
-    # -- farm crops --------------------------------------------------------
-
     def set_farm_crop_range(self, plant_id: int, start: int, end: int) -> None:
         """Plants ``plant_id`` on the crops numbered ``start`` (inclusive) to ``end`` (exclusive)."""
         entries = self.user_default.list_by_prefix(_FARM_CROP_PREFIX)
@@ -52,8 +50,6 @@ class Preferences:
     def get_all_farm_crops(self) -> List[UserDefaultEntry]:
         return self.user_default.list_by_prefix(_FARM_CROP_PREFIX)
 
-    # -- tutorials ---------------------------------------------------------
-
     def get_display_tutorials(self) -> List[UserDefaultEntry]:
         return self.user_default.list_by_include("tutorial")
 
@@ -64,8 +60,6 @@ class Preferences:
     def delete_display_tutorials(self) -> None:
         entries = self.user_default.list_by_include("tutorial")
         self.user_default.delete_many(entry.key for entry in entries)
-
-    # -- audio -------------------------------------------------------------
 
     def disable_music(self) -> None:
         self.user_default.set("options_music_disabled", True)
@@ -79,8 +73,6 @@ class Preferences:
     def enable_sound(self) -> None:
         self.user_default.delete("options_sound_disabled")
 
-    # -- account -----------------------------------------------------------
-
     def get_user_id(self) -> Optional[int]:
         number = _to_number(self.user_default.get("user_origin_id"))
         return int(number) if number is not None else None
@@ -92,8 +84,6 @@ class Preferences:
             return None
 
         return datetime.fromtimestamp(timestamp, tz=timezone.utc)
-
-    # -- sanctuary ---------------------------------------------------------
 
     def get_retry_breed_sanctuary_dragons(self) -> Optional[RetrySanctuaryDragons]:
         left = self.user_default.list_by_include("left_retry_breeed_dragon")

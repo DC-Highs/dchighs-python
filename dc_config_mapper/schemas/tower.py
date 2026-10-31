@@ -47,7 +47,6 @@ class TowerIslandIn(Strict):
     max_die_roll: Num
     help_view_id: Num
     active_platforms: Any
-    # injected properties
     square_ids: List[Num]
     floor_ids: List[Num]
     reward_ids: List[Num]

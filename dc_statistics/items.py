@@ -68,7 +68,6 @@ class ItemsStatistics:
         return to_camel_dict(self)
 
 
-#: ``ItemsStatistics`` field -> ``group_type`` of the items it counts.
 GROUP_TYPES: Dict[str, str] = {
     "dragons_count": "DRAGON",
     "habitats_count": "HABITAT",

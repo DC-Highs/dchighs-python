@@ -27,9 +27,7 @@ class _DragonDownloader(AssetDownloader):
     ) -> None:
         self.image_name = image_name
         self.phase = int(phase)
-        #: Skin suffix, e.g. ``"_1"``.
         self.skin = skin
-        #: Static server prefix (defaults to iOS, ``dci``).
         self.platform_prefix = str(platform_prefix)
 
     @property

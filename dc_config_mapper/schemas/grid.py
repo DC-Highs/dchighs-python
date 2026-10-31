@@ -81,7 +81,6 @@ class GridEpisodeIn(Strict):
     foregrounds: List[Any]
     foregrounds_plists: List[Any]
     squares: List[Num]
-    # injected props
     decoration_ids: List[Num]
 
     def transform(self) -> JsonDict:
@@ -115,7 +114,6 @@ class GridSquareIn(Strict):
     def transform(self) -> JsonDict:
         reward: Optional[JsonDict] = None
 
-        # `null` for NONE squares; otherwise `{ type, chest_id | dragon_id }`.
         if self.kind != "NONE":
             reward = {"type": self.kind.lower()}
 

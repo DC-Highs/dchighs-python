@@ -29,7 +29,7 @@ def test_translates_known_keys_and_keeps_unknown_ones():
     assert out["type_name"] == "Épico"
     assert "chest_name_key" not in out
     assert out["description_key"] == "tid_missing"
-    assert "chest_name_key" in source  # the input is not modified
+    assert "chest_name_key" in source
 
 
 def test_searches_ignore_case_and_accents():

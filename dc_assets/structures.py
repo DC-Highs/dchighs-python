@@ -19,7 +19,6 @@ class _StructureSpriteDownloader(AssetDownloader):
     ) -> None:
         self.image_name = image_name
         self.image_quality = SpriteQuality(image_quality)
-        #: Static server prefix (defaults to iOS, ``dci``).
         self.platform_prefix = str(platform_prefix)
 
     @property
@@ -37,7 +36,6 @@ class _StructureThumbnailDownloader(AssetDownloader):
         platform_prefix: Prefix = StaticFileUrlPlatformPrefix.IOS,
     ) -> None:
         self.image_name = image_name
-        #: Static server prefix (defaults to iOS, ``dci``).
         self.platform_prefix = str(platform_prefix)
 
     @property

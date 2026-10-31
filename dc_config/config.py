@@ -14,7 +14,7 @@ class FetchOptions:
 
     url: str
     user_id: str
-    auth_token: str = field(repr=False)  # the auth token must never end up in logs
+    auth_token: str = field(repr=False)
     language: Optional[ConfigLanguage] = None
     platform: Optional[ConfigPlatform] = None
     filter: Optional[Sequence[ConfigFilter]] = None

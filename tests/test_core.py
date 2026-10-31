@@ -149,7 +149,6 @@ def test_breeding_results():
     assert results[12].sources == [BreedingSource.SANCTUARY]
     assert results[10].to_dict() == {"dragon_id": 10, "sources": ["regular"], "required_empower": 0}
 
-    # Incompatible elements and low parent levels produce nothing.
     parent1["elements"] = ["x"]
     parent2["elements"] = ["y"]
     parent2["level"] = 1

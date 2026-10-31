@@ -34,12 +34,9 @@ class UserDefault:
     def __init__(self, file_path: Union[str, Path]) -> None:
         self.file_path = Path(file_path)
 
-    # -- raw ---------------------------------------------------------------
-
     def _read(self) -> Tuple[ET.ElementTree, Optional[str]]:
         data = self.file_path.read_bytes()
         match = _DECLARATION_RE.match(data.decode("utf-8-sig", errors="replace"))
-        # The file is always written back as UTF-8.
         declaration = _ENCODING_RE.sub('encoding="utf-8"', match.group(1)) if match else None
         return ET.ElementTree(ET.fromstring(data)), declaration
 
@@ -52,8 +49,6 @@ class UserDefault:
     @staticmethod
     def _entries(tree: ET.ElementTree) -> List[ET.Element]:
         return list(tree.getroot().findall("entry"))
-
-    # -- queries -----------------------------------------------------------
 
     def read_raw(self) -> ET.ElementTree:
         """The parsed XML document."""
@@ -77,8 +72,6 @@ class UserDefault:
 
     def list_by_include(self, include: str) -> List[UserDefaultEntry]:
         return [entry for entry in self.get_entries() if include in entry.key]
-
-    # -- edits -------------------------------------------------------------
 
     def set(self, key: str, value: UserDefaultValue) -> None:
         self.set_many([(key, value)])

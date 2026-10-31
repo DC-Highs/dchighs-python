@@ -19,7 +19,6 @@ from dc_config_mapper.errors import (
 )
 from dc_core import DragonElement
 
-#: A JSON number (integer or float), exactly as it came from the configuration.
 Num = Union[StrictInt, StrictFloat]
 
 JsonDict = Dict[str, Any]
@@ -102,11 +101,6 @@ def truthy(value: Any) -> bool:
     return True
 
 
-# ---------------------------------------------------------------------------
-# Prices
-# ---------------------------------------------------------------------------
-
-
 def process_price(gem: Optional[Num] = None, gold: Optional[Num] = None) -> Optional[JsonDict]:
     """``processPrice``: ``{ g: 10 }`` -> ``{ type: gold, amount: 10 }``, ``{}`` -> ``None``."""
     if gold is None and gem is None:
@@ -120,10 +114,6 @@ def process_price(gem: Optional[Num] = None, gold: Optional[Num] = None) -> Opti
 
     raise UnexpectedPriceError(f'multiple price keys: {{"g":{gold},"c":{gem}}}')
 
-
-# ---------------------------------------------------------------------------
-# Rewards
-# ---------------------------------------------------------------------------
 
 _PET_FOOD_PACK_SIZES = ("s", "m", "l", "xl")
 
@@ -269,11 +259,6 @@ def process_rewards(rewards: Iterable[Mapping[str, Any]]) -> List[JsonDict]:
     return processed
 
 
-# ---------------------------------------------------------------------------
-# Grid decorations
-# ---------------------------------------------------------------------------
-
-
 def _coordinate(value: Any, key: str) -> int:
     found = value.get(key) if isinstance(value, dict) else None
 
@@ -316,11 +301,6 @@ def resolve_grid_decoration_positions(
         resolved.append(item)
 
     return resolved
-
-
-# ---------------------------------------------------------------------------
-# Small JSON helpers used by the mappers
-# ---------------------------------------------------------------------------
 
 
 def parse(schema: str, model: Any, value: Any) -> Any:

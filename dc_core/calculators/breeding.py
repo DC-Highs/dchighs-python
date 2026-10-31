@@ -199,7 +199,6 @@ def calculate_breeding_results(
         if chance is not None:
             existing.chance = chance if existing.chance is None else max(existing.chance, chance)
 
-    # Special breeding
     for special in config.special_breeding:
         matches_p1_c1 = parent1.id in special.condition1.id
         matches_p2_c2 = parent2.id in special.condition2.id
@@ -210,7 +209,6 @@ def calculate_breeding_results(
         if (matches_p1_c1 and matches_p2_c2) or (matches_p1_c2 and matches_p2_c1):
             add_result(special.result, BreedingSource.SPECIAL)
 
-    # Soulmates
     for soulmate in config.soulmates:
         matches = (soulmate.parent_1_id == parent1.id and soulmate.parent_2_id == parent2.id) or (
             soulmate.parent_1_id == parent2.id and soulmate.parent_2_id == parent1.id

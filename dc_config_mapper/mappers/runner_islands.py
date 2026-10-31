@@ -18,7 +18,6 @@ class MappedRunnerIslands(MappedResult):
     missions: List[Dict[str, Any]]
     rewards: List[Dict[str, Any]]
     milestone_rewards: List[Dict[str, Any]]
-    #: Mapped from the ``mission_pool`` key of the configuration.
     mission_pools: List[Dict[str, Any]]
     sections: Optional[Any] = None
     parameters: Optional[Any] = None

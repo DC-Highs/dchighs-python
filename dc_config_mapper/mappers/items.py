@@ -7,7 +7,6 @@ from dc_config_mapper.mappers.base import Mapper
 from dc_config_mapper.schemas.items import BuildingIn, DragonIn
 from dc_config_mapper.utils import parse
 
-#: ``group_type`` of the game -> key of the mapped result.
 GROUPS: Tuple[Tuple[str, str], ...] = (
     ("ALLIANCE_PORTAL", "alliance_portals"),
     ("BUILDING", "buildings"),

@@ -42,7 +42,6 @@ class FogIslandIn(Strict):
     foregrounds_plists: List[Any]
     particles_position: List[Num]
     tutorial_claim_cells: List[Num]
-    # injected props
     square_ids: List[Num]
 
     def transform(self) -> JsonDict:
@@ -107,7 +106,6 @@ class FogSquareIn(Strict):
     def transform(self) -> JsonDict:
         reward: Optional[JsonDict] = None
 
-        # `null` for NONE/STEP squares; otherwise `{ type, chest_id | skin_id | piece_dragon_id }`.
         if self.kind not in ("NONE", "STEP"):
             reward = {"type": self.kind}
 

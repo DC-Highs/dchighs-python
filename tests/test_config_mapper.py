@@ -55,9 +55,6 @@ def chests_section():
     }
 
 
-# -- utils -------------------------------------------------------------------
-
-
 def test_booleans():
     assert number_to_boolean(1) is True
     assert number_to_boolean(0) is False
@@ -103,7 +100,7 @@ def test_processes_every_reward_kind():
         ]
     )
 
-    assert len(out) == 14  # 13 non-empty entries, one of them with two seeds
+    assert len(out) == 14
     assert out[0] == {"type": "chest", "chest_id": 5}
     assert out[1]["dragon_ids"] == [1, 2]
     assert out[6] == {"type": "building", "building_id": 9}
@@ -128,9 +125,6 @@ def test_grid_decorations_fill_free_cells():
 
     with pytest.raises(DecorationPositionMismatchError):
         resolve_grid_decoration_positions(squares, decorations[:1], 2, 2)
-
-
-# -- mappers -----------------------------------------------------------------
 
 
 def test_chests_are_resolved_restructured_and_translated():
@@ -281,9 +275,6 @@ def test_generic_group_rule_agrees_with_the_known_groups():
         assert pluralizer.pluralize(group_type.lower(), 2, False).replace(" ", "_") == key, group_type
 
 
-# -- data compiler -----------------------------------------------------------
-
-
 def context() -> CompileContext:
     return (
         CompileContext()
@@ -334,7 +325,7 @@ def test_walks_nested_objects_and_arrays():
     assert out["list"][0]["dragon"]["name"] == "A"
     assert out["list"][1] == 3
     assert out["inner"]["attack"]["name"] == "Bite"
-    assert data == snapshot  # the input is not modified
+    assert data == snapshot
 
 
 def test_circular_references_error_instead_of_overflowing():
