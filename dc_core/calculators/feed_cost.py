@@ -18,7 +18,6 @@ def calculate_dragon_feed_cost(initial_level: int, final_level: int) -> int:
     total_cost = 0
 
     for level in range(initial_level, final_level):
-        if level < len(FEED_COST_SETTINGS):
-            total_cost += FEED_COST_SETTINGS[level].total
+        total_cost += FEED_COST_SETTINGS[level].total
 
     return total_cost

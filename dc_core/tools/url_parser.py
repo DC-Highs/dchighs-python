@@ -72,10 +72,7 @@ class DragonStaticFileUrlParser:
         if match is None:
             return None
 
-        phase = next((group for group in match.groups() if group is not None), None)
-
-        if phase is None:
-            return None
+        phase = next(group for group in match.groups() if group is not None)
 
         try:
             return DragonPhase(int(phase))
