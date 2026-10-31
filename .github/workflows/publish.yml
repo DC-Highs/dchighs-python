@@ -1,0 +1,40 @@
+name: Publish to PyPI
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pipx install poetry
+      - run: poetry install --all-extras
+      - run: poetry run poe cov
+      - name: The release tag must match the package version
+        run: test "v$(poetry version -s)" = "${{ github.event.release.tag_name }}"
+      - run: poetry build
+      - run: pipx run twine check dist/*
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: pypi
+      url: https://pypi.org/project/dchighs/
+    permissions:
+      id-token: write # Trusted Publishing: no API token is stored in the repository
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+      - uses: pypa/gh-action-pypi-publish@release/v1
