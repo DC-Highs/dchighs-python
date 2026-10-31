@@ -1,7 +1,7 @@
 """Tiny helpers to read loosely-typed configuration JSON the way ``serde_json::Value`` accessors do."""
 
 from dataclasses import fields, is_dataclass
-from typing import Any, Dict, List, Optional
+from typing import Any, List, Optional
 
 
 def as_int(value: Any) -> Optional[int]:
@@ -40,11 +40,5 @@ def to_camel_dict(value: Any) -> Any:
     if isinstance(value, dict):
         return {key: to_camel_dict(item) for key, item in value.items()}
 
-    if isinstance(value, list):
-        return [to_camel_dict(item) for item in value]
-
     return value
 
-
-def clone_dict(value: Dict[str, Any]) -> Dict[str, Any]:
-    return dict(value)
