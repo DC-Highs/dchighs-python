@@ -7,7 +7,7 @@ license = "MIT"
 license-files = ["LICENSE"]
 authors = [{ name = "Marcuth", email = "me@marcuth.dev" }]
 requires-python = ">=3.9,<4.0"
-keywords = ["dragon-city", "dchighs", "game", "socialpoint"]
+keywords = ["dragon-city", "dchighs", "game", "socialpoint", "dragoncity"]
 classifiers = [
     "Development Status :: 3 - Alpha",
     "Intended Audience :: Developers",
@@ -17,6 +17,8 @@ classifiers = [
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
+    "Topic :: Games/Entertainment",
+    "Topic :: Software Development :: Libraries :: Python Modules",
     "Typing :: Typed",
 ]
 # `dc_core` is the only required module and has no third-party dependencies.
@@ -41,9 +43,14 @@ all = [
 ]
 
 [project.urls]
+Homepage = "https://github.com/DC-Highs/dchighs-python"
+Documentation = "https://github.com/DC-Highs/dchighs-python/tree/main/docs"
 Repository = "https://github.com/DC-Highs/dchighs-python"
+Issues = "https://github.com/DC-Highs/dchighs-python/issues"
+Changelog = "https://github.com/DC-Highs/dchighs-python/blob/main/CHANGELOG.md"
 
 [tool.poetry]
+include = [{ path = "docs", format = "sdist" }, { path = "tests", format = "sdist" }]
 packages = [
     { include = "dc_core" },
     { include = "dc_localization" },
