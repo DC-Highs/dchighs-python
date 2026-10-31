@@ -333,3 +333,59 @@ def test_circular_references_error_instead_of_overflowing():
 
     with pytest.raises(MaxDepthExceededError):
         DataCompiler().compile({"dragon_id": 1}, ctx)
+
+
+def test_chest_rewards_without_ids_or_resources_are_tolerated():
+    section = chests_section()
+    section["rewards"].append({"reward": {}})
+    section["rewards"].append("not a dict")
+    section["rewards"][0]["reward"] = {"resource": {}}
+
+    chest = ChestsMapper(localization()).map(section)[0]
+
+    assert chest["rewards"][0]["reward"] == {}
+
+
+def test_maze_nodes_and_paths_with_optional_fields():
+    from dc_config_mapper.schemas.maze import MazeNodeIn, MazePathIn
+
+    node = MazeNodeIn.model_validate(
+        {"id": 1, "position": [0, 0], "encounter_skip_cost": {"ep": 4}, "key": 2, "encounter": 3}
+    ).transform()
+
+    assert node == {
+        "id": 1, "cost": 0, "key_path_id": 2, "encounter_id": 3, "encounter_skip_cost": 4,
+    }
+
+    path = MazePathIn.model_validate(
+        {
+            "id": 1, "color": [1], "visibility": 1, "dragon_type": 2, "new_badge": 0, "mobile_dragon_scale": 1,
+            "mobile_dragon_offset": [0], "nodes": [], "availability": {"from": 0, "to": 1},
+        }
+    ).transform()
+
+    assert path["availability"] == {"from": "1970-01-01T00:00:00.000Z", "to": "1970-01-01T00:00:01.000Z"}
+    assert path["has_new_badge"] is False
+
+
+def test_chest_reward_without_resource_keeps_the_other_parts():
+    section = chests_section()
+    section["rewards"][0]["reward"] = {
+        "buildings": [1],
+        "skin": [2],
+        "moves": 3,
+        "seeds": [{"id": 1, "amount": 2}],
+        "rarity_seeds": [{"rarity": "C", "amount": 1}],
+        "battleground_keys": [{"battleground_id": 1, "key_id": 2, "amount": 3}],
+    }
+
+    reward = ChestsMapper(localization()).map(section)[0]["rewards"][0]["reward"]
+
+    assert reward == {
+        "building_ids": [1],
+        "skin_ids": [2],
+        "moves": 3,
+        "seeds": [{"id": 1, "amount": 2}],
+        "rarity_seeds": [{"rarity": "C", "amount": 1}],
+        "battleground_keys": [{"battleground_id": 1, "key_id": 2, "amount": 3}],
+    }
