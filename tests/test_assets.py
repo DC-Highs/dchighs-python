@@ -11,6 +11,7 @@ from dc_assets import (
     DragonSpineAnimationDownloader,
     DragonSpriteDownloader,
     DragonThumbnailDownloader,
+    FlashClientDownloader,
     HabitatSpriteDownloader,
     InvalidArgumentsError,
     IslandPackageDownloader,
@@ -120,3 +121,10 @@ async def test_fetch_reports_http_errors():
     async with httpx.AsyncClient(transport=transport) as client:
         with pytest.raises(AssetsHttpError):
             await MusicDownloader("x").fetch(client)
+
+
+def test_flash_client_url():
+    assert FlashClientDownloader("2.2.5").url == (
+        "https://dci-static-s1.socialpointgames.com/static/dragoncity/flash/Base_sec_2.2.5.swf"
+    )
+    assert FlashClientDownloader("1.0", platform_prefix="dca").url.startswith("https://dca-static-s1.")

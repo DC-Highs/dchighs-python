@@ -21,6 +21,7 @@ from dc_assets.dragons import (
     DragonSpriteDownloader,
     DragonThumbnailDownloader,
 )
+from dc_assets.flash_client import FlashClientDownloader
 from dc_assets.errors import AssetsError, AssetsHttpError, InvalidArgumentsError
 from dc_assets.islands import ChestSpriteDownloader, IslandPackageDownloader
 from dc_assets.sounds import MusicDownloader
@@ -63,6 +64,7 @@ __all__ = [
     "DragonSpriteDownloader",
     "DragonSpriteQuality",
     "DragonThumbnailDownloader",
+    "FlashClientDownloader",
     "HabitatSpriteDownloader",
     "HabitatSpriteQuality",
     "HabitatThumbnailDownloader",

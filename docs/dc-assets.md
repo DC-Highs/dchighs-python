@@ -37,6 +37,7 @@ path = await sprite.download("dragon.png")   # to disk, returns a pathlib.Path
 | `ChestSpriteDownloader` | `image_name`, `image_quality` | tries `ui_<image>…`, then falls back to `ui_basic_<image>…` (`basic_url`) |
 | `IslandPackageDownloader` | `island_type`, `file_name` | island `.zip` |
 | `MusicDownloader` | `key_name` | `.mp3` (plain HTTP, as served by the game) |
+| `FlashClientDownloader` | `version` | `flash/Base_sec_<version>.swf`: the Flash client itself |
 
 `phase` accepts a `DragonPhase` or an `int`.
 
@@ -67,3 +68,15 @@ async with httpx.AsyncClient() as client:
     for downloader in downloaders:
         await downloader.download(f"out/{downloader.url.rsplit('/', 1)[-1]}", client)
 ```
+
+### Flash client versions
+
+Old versions of the Flash client are still served by the static servers:
+
+```python
+client = FlashClientDownloader("2.2.5")
+client.url    # https://dci-static-s1.socialpointgames.com/static/dragoncity/flash/Base_sec_2.2.5.swf
+await client.download("Base_sec_2.2.5.swf")
+```
+
+A version that does not exist answers with an HTTP error, raised as `AssetsHttpError`.
